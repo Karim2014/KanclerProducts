@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.karimsabitov.purchases.MainActivity">
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:title="@string/Sort"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_import"
+        android:title="@string/Import"
+        android:icon="@drawable/ic_create_black_24dp"
+        app:showAsAction="ifRoom" />
+
+</menu>
