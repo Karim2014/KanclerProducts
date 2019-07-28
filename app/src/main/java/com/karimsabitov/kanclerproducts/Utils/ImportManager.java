@@ -3,6 +3,7 @@ package com.karimsabitov.kanclerproducts.Utils;
 import com.karimsabitov.kanclerproducts.model.Product;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -14,6 +15,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ImportManager {
+
+    private static final String TAG = "Test";
 
     public List<Product> fetchProducts(String fileName) throws IOException {
         List<Product> products = new ArrayList<>();
@@ -28,8 +31,23 @@ public class ImportManager {
 
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
-            String title = row.getCell(0).getStringCellValue();
-            int count = (int) row.getCell(1).getNumericCellValue();
+            Cell cell = row.getCell(0);
+            String title = "";
+            if (cell != null) {
+                title = cell.getStringCellValue();
+            }
+
+            if (title.equals("")) {
+                continue;
+            }
+
+            cell = row.getCell(1);
+            int count = 0;
+            if (cell != null) {
+                if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                    count = (int) cell.getNumericCellValue();
+                }
+            }
             products.add(new Product(title, count, 0, false));
         }
 
